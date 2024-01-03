@@ -1,1 +1,18 @@
+Feature: OAuth Token Request
 
+Scenario: Request OAuth Access Token
+    Given url 'https://jupiter-c21-test-eu20.cfapps.eu20.hana.ondemand.com/api/outbound-service/v1/analytics/'
+    And header Accept = 'application/json'
+    And request
+    """
+    { 
+     "token_type": "bearer",
+     "code": "JNeaKtJwbVSX-lfkvXc-kg486jUtytlY",
+     "client_id": "sb-24806c85-fdc1-46d8-b14d-bb8af6c66659!b14185|c21test!b2237", 
+     "client_secret": "+zrmx4/LXDzq/KRFDnQhxoNh2H0=",
+     "response_type": "code"
+    } 
+    """
+    When method get
+    Then status 200
+    And match response != null
